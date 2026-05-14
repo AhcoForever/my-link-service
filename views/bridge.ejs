@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="클릭하시면 해당 페이지로 이동합니다.">
+    <meta property="og:image" content="<%= imageUrl %>">
+    <meta property="og:type" content="website">
+    
+    <script>
+        window.location.href = "<%= originalUrl %>";
+    </script>
+
+    <title><%= title %></title>
+</head>
+<body>
+    <p>페이지로 이동 중입니다... 잠시만 기다려주세요.</p>
+</body>
+</html>
