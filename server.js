@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
 app.post('/create', (req, res) => {
     const { originalUrl, title, imageUrl } = req.body;
     const id = Math.random().toString(36).substring(2, 8); // 고유 ID 생성 (예: a1b2c3)
-    
+
     linkDatabase[id] = { originalUrl, title, imageUrl };
-    
+
     const shortLink = `${req.get('host')}/l/${id}`;
     res.send(`변환된 링크: <a href="http://${shortLink}">${shortLink}</a>`);
 });
@@ -35,7 +35,7 @@ app.post('/create', (req, res) => {
 // 3. ✨ 핵심: 브릿지 페이지 (카톡 크롤러 대응)
 app.get('/l/:id', (req, res) => {
     const data = linkDatabase[req.params.id];
-    
+
     if (!data) {
         return res.status(404).send('존재하지 않는 링크입니다.');
     }
@@ -48,4 +48,7 @@ app.get('/l/:id', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
